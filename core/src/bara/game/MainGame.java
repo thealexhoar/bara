@@ -20,6 +20,8 @@ import bara.game.util.AssetManager;
 import bara.game.util.InputManager;
 import bara.game.util.KeyBind;
 
+import static bara.game.construction.PlayerConstructionKt.constructPlayer;
+
 public class MainGame extends ApplicationAdapter {
     private int _width, _height;
     private PooledEngine _engine;
@@ -72,7 +74,7 @@ public class MainGame extends ApplicationAdapter {
 
         _renderPipeline.append(debugRenderSystem);
 
-        PlayerConstruction.constructPlayer(_engine, 0, 0, true);
+        constructPlayer(_engine, 0f, 0f, true);
     }
 
     @Override

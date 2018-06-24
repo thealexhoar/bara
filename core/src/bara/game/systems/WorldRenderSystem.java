@@ -16,8 +16,6 @@ import bara.game.util.LayerComparator;
 
 public class WorldRenderSystem extends SortedIteratingSystem implements RenderStage {
 
-    public static final float PI_OVER_180 = (float)(Math.PI / 180);
-    public static final float INV_PI_OVER_180 = (float)(180 / Math.PI);
 
     private int _width, _height;
     private float _deltaTime;
