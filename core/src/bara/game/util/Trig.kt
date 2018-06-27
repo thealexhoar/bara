@@ -12,3 +12,15 @@ inline fun radiansToDegrees(radians: Float) : Float {
 inline fun degreesToRadians(degrees: Float) : Float {
     return degrees * PI_OVER_180
 }
+
+inline fun sinf(f: Float) : Float {
+    return Math.sin(f.toDouble()).toFloat()
+}
+
+inline fun cosf(f: Float) : Float {
+    return Math.cos(f.toDouble()).toFloat()
+}
+
+inline fun tanf(f: Float) : Float {
+    return Math.tan(f.toDouble()).toFloat()
+}

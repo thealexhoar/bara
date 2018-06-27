@@ -13,7 +13,12 @@ val PLAYER_SIZE = 3.0f
 val PLAYER_COLLISION_FIXTURE = "collision"
 
 
-fun constructPlayer(engine: PooledEngine, x: Float, y: Float, addToEngine: Boolean): Entity {
+fun constructPlayer(
+    engine: PooledEngine,
+    x: Float,
+    y: Float,
+    addToEngine: Boolean
+): Entity {
     val player = engine.entity {
         with<PlayerComponent>()
         with<PositionComponent>()

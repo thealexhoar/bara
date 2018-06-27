@@ -20,6 +20,7 @@ class SpriteTransformSystem() : IteratingSystem(
             positionComponent.x + spriteComponent.offsetX,
             positionComponent.y + spriteComponent.offsetY
         )
-        spriteComponent.sprite.rotation = radiansToDegrees(positionComponent.theta + spriteComponent.angleRad)
+        spriteComponent.sprite.rotation =
+            radiansToDegrees(positionComponent.theta +spriteComponent.angleRad)
     }
 }

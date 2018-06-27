@@ -13,7 +13,6 @@ import com.badlogic.gdx.graphics.glutils.ImmediateModeRenderer;
 import com.badlogic.gdx.graphics.glutils.ImmediateModeRenderer20;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.World;
-import bara.game.construction.PlayerConstruction;
 import bara.game.graphics.RenderPipeline;
 import bara.game.systems.*;
 import bara.game.util.AssetManager;
@@ -63,7 +62,8 @@ public class MainGame extends ApplicationAdapter {
         InputManager.setWorldCamera(simpleCamera);
 
         CameraSystem cameraSystem = new CameraSystem(simpleCamera);
-        WorldRenderSystem worldRenderSystem = new WorldRenderSystem(_width, _height, _renderer, simpleCamera);
+        WorldRenderSystem worldRenderSystem = new WorldRenderSystem(
+            _width, _height, _renderer, simpleCamera);
         DebugRenderSystem debugRenderSystem = new DebugRenderSystem(_width, _height, _spriteBatch, _world, simpleCamera);
 
         _engine.addSystem(cameraSystem);
