@@ -16,8 +16,7 @@ val PLAYER_COLLISION_FIXTURE = "collision"
 fun constructPlayer(
     engine: PooledEngine,
     x: Float,
-    y: Float,
-    addToEngine: Boolean
+    y: Float
 ): Entity {
     val player = engine.entity {
         with<PlayerComponent>()
@@ -25,10 +24,6 @@ fun constructPlayer(
         with<SpriteComponent>()
     }
 
-
-    if (addToEngine) {
-        engine.addEntity(player)
-    }
 
     return player
 }

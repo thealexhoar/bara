@@ -15,6 +15,6 @@ public class BehaviorSystem extends IteratingSystem {
     @Override
     protected void processEntity(Entity entity, float deltaTime) {
         BehaviorComponent behaviorComponent = ComponentLookup.behavior(entity);
-        behaviorComponent.behavior.run(deltaTime, entity);
+        behaviorComponent.getBehavior().run(deltaTime, entity);
     }
 }
