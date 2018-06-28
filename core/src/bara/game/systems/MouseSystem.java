@@ -28,14 +28,14 @@ public class MouseSystem extends EntitySystem {
     public void update(float deltaTime) {
         if(_entities.size() > 0) {
             Entity mouseEntity = _entities.first();
-            PositionComponent positionComponent = ComponentLookup.position(mouseEntity);
-            PositionComponent playerPosition = ComponentLookup.position(Blackboard.player);
+            PositionComponent positionComponent = ComponentLookup.INSTANCE.position(mouseEntity);
+            PositionComponent playerPosition = ComponentLookup.INSTANCE.position(Blackboard.player);
 
             Vector2 delta = InputManager.getWorldMouseDelta();
 
             Vector2 diff = new Vector2(
-                positionComponent.x - playerPosition.x,
-                positionComponent.y - playerPosition.y
+                positionComponent.getX() - playerPosition.getX(),
+                positionComponent.getY() - playerPosition.getY()
             );
 
             diff.add(delta);
@@ -43,10 +43,10 @@ public class MouseSystem extends EntitySystem {
                 diff.setLength(Blackboard.aimRadius);
             }
 
-            positionComponent.x = playerPosition.x + diff.x;
-            positionComponent.y = playerPosition.y + diff.y;
+            positionComponent.setX(playerPosition.getX() + diff.x);
+            positionComponent.setY(playerPosition.getY() + diff.y);
 
-            InputManager.setWorldMousePos(new Vector2(positionComponent.x, positionComponent.y));
+            InputManager.setWorldMousePos(new Vector2(positionComponent.getX(), positionComponent.getY()));
         }
     }
 }

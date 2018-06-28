@@ -35,38 +35,38 @@ public class PhysicsSystem extends EntitySystem implements EntityListener, Conta
 
     @Override
     public void entityAdded(Entity entity) {
-        PhysicsComponent physicsComponent = ComponentLookup.physics(entity);
-        CollisionComponent collisionComponent = ComponentLookup.collision(entity);
-        physicsComponent.body = _world.createBody(physicsComponent.bodyDef);
+        PhysicsComponent physicsComponent = ComponentLookup.INSTANCE.physics(entity);
+        CollisionComponent collisionComponent = ComponentLookup.INSTANCE.collision(entity);
+        physicsComponent.setBody(_world.createBody(physicsComponent.getBodyDef()));
         //set body data to point at the entity
         //but set fixture data to hold its name
-        physicsComponent.body.setUserData(entity);
+        physicsComponent.getBody().setUserData(entity);
         if (collisionComponent != null) {
-            for (String key : physicsComponent.fixtureDefs.keySet()) {
-                FixtureDef fixtureDef = physicsComponent.fixtureDefs.get(key);
-                Fixture fixture = physicsComponent.body.createFixture(fixtureDef);
+            for (String key : physicsComponent.getFixtureDefs().keys()) {
+                FixtureDef fixtureDef = physicsComponent.getFixtureDefs().get(key);
+                Fixture fixture = physicsComponent.getBody().createFixture(fixtureDef);
                 fixture.setUserData(key);
-                physicsComponent.fixtures.put(key, fixture);
+                physicsComponent.getFixtures().put(key, fixture);
 
-                collisionComponent.beginContacts.put(key, new Array<Contact>());
-                collisionComponent.currentContacts.put(key, new Array<Fixture>());
-                collisionComponent.endContacts.put(key, new Array<Contact>());
+                collisionComponent.getBeginContacts().put(key, new Array<Contact>());
+                collisionComponent.getCurrentContacts().put(key, new Array<Fixture>());
+                collisionComponent.getEndContacts().put(key, new Array<Contact>());
             }
         }
         else {
-            for (String key : physicsComponent.fixtureDefs.keySet()) {
-                FixtureDef fixtureDef = physicsComponent.fixtureDefs.get(key);
-                Fixture fixture = physicsComponent.body.createFixture(fixtureDef);
+            for (String key : physicsComponent.getFixtureDefs().keys()) {
+                FixtureDef fixtureDef = physicsComponent.getFixtureDefs().get(key);
+                Fixture fixture = physicsComponent.getBody().createFixture(fixtureDef);
                 fixture.setUserData(key);
-                physicsComponent.fixtures.put(key, fixture);
+                physicsComponent.getFixtures().put(key, fixture);
             }
         }
     }
 
     @Override
     public void entityRemoved(Entity entity) {
-        PhysicsComponent physicsComponent = ComponentLookup.physics(entity);
-        _world.destroyBody(physicsComponent.body);
+        PhysicsComponent physicsComponent = ComponentLookup.INSTANCE.physics(entity);
+        _world.destroyBody(physicsComponent.getBody());
     }
 
     @Override
@@ -80,11 +80,11 @@ public class PhysicsSystem extends EntitySystem implements EntityListener, Conta
 
         for (int i = 0; i < _entities.size(); i++) {
             Entity entity = _entities.get(i);
-            PositionComponent positionComponent = ComponentLookup.position(entity);
-            PhysicsComponent physicsComponent = ComponentLookup.physics(entity);
-            positionComponent.x = physicsComponent.body.getPosition().x;
-            positionComponent.y = physicsComponent.body.getPosition().y;
-            positionComponent.theta = physicsComponent.body.getAngle();
+            PositionComponent positionComponent = ComponentLookup.INSTANCE.position(entity);
+            PhysicsComponent physicsComponent = ComponentLookup.INSTANCE.physics(entity);
+            positionComponent.setX(physicsComponent.getBody().getPosition().x);
+            positionComponent.setY(physicsComponent.getBody().getPosition().y);
+            positionComponent.setTheta(physicsComponent.getBody().getAngle());
         }
     }
 
@@ -94,18 +94,18 @@ public class PhysicsSystem extends EntitySystem implements EntityListener, Conta
         Fixture fixtureB = contact.getFixtureB();
         Entity entityA = (Entity)fixtureA.getBody().getUserData();
         Entity entityB = (Entity)fixtureB.getBody().getUserData();
-        CollisionComponent collisionComponentA = ComponentLookup.collision(entityA);
-        CollisionComponent collisionComponentB = ComponentLookup.collision(entityB);
+        CollisionComponent collisionComponentA = ComponentLookup.INSTANCE.collision(entityA);
+        CollisionComponent collisionComponentB = ComponentLookup.INSTANCE.collision(entityB);
 
         if (collisionComponentA != null) {
             String fixtureName = (String) fixtureA.getUserData();
-            collisionComponentA.beginContacts.get(fixtureName).add(contact);
-            collisionComponentA.currentContacts.get(fixtureName).add(fixtureB);
+            collisionComponentA.getBeginContacts().get(fixtureName).add(contact);
+            collisionComponentA.getCurrentContacts().get(fixtureName).add(fixtureB);
         }
         if (collisionComponentB != null) {
             String fixtureName = (String) fixtureB.getUserData();
-            collisionComponentB.beginContacts.get(fixtureName).add(contact);
-            collisionComponentB.currentContacts.get(fixtureName).add(fixtureA);
+            collisionComponentB.getBeginContacts().get(fixtureName).add(contact);
+            collisionComponentB.getCurrentContacts().get(fixtureName).add(fixtureA);
         }
 
     }
@@ -116,18 +116,18 @@ public class PhysicsSystem extends EntitySystem implements EntityListener, Conta
         Fixture fixtureB = contact.getFixtureB();
         Entity entityA = (Entity)fixtureA.getBody().getUserData();
         Entity entityB = (Entity)fixtureB.getBody().getUserData();
-        CollisionComponent collisionComponentA = ComponentLookup.collision(entityA);
-        CollisionComponent collisionComponentB = ComponentLookup.collision(entityB);
+        CollisionComponent collisionComponentA = ComponentLookup.INSTANCE.collision(entityA);
+        CollisionComponent collisionComponentB = ComponentLookup.INSTANCE.collision(entityB);
 
         if (collisionComponentA != null) {
             String fixtureName = (String) fixtureA.getUserData();
-            collisionComponentA.endContacts.get(fixtureName).add(contact);
-            collisionComponentA.currentContacts.get(fixtureName).removeValue(fixtureB, true);
+            collisionComponentA.getEndContacts().get(fixtureName).add(contact);
+            collisionComponentA.getCurrentContacts().get(fixtureName).removeValue(fixtureB, true);
         }
         if (collisionComponentB != null) {
             String fixtureName = (String) fixtureB.getUserData();
-            collisionComponentB.endContacts.get(fixtureName).add(contact);
-            collisionComponentB.currentContacts.get(fixtureName).removeValue(fixtureA, true);
+            collisionComponentB.getEndContacts().get(fixtureName).add(contact);
+            collisionComponentB.getCurrentContacts().get(fixtureName).removeValue(fixtureA, true);
         }
     }
 

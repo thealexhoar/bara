@@ -11,9 +11,9 @@ public class CameraConstruction {
         Entity camera = engine.createEntity();
 
         PositionComponent positionComponent = engine.createComponent(PositionComponent.class);
-        positionComponent.x = x;
-        positionComponent.y = y;
-        positionComponent.theta = 0;
+        positionComponent.setX(x);
+        positionComponent.setY(y);
+        positionComponent.setTheta(0);
         camera.add(positionComponent);
 
         CameraComponent cameraComponent = engine.createComponent(CameraComponent.class);

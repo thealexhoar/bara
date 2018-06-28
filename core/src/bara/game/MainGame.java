@@ -61,7 +61,7 @@ public class MainGame extends ApplicationAdapter {
 
         CameraSystem cameraSystem = new CameraSystem(simpleCamera);
         WorldRenderSystem worldRenderSystem = new WorldRenderSystem(
-            _width, _height, _renderer, simpleCamera);
+            _width, _height, simpleCamera);
         DebugRenderSystem debugRenderSystem = new DebugRenderSystem(_width, _height, _spriteBatch, _world, simpleCamera);
 
         _engine.addSystem(cameraSystem);
@@ -72,7 +72,7 @@ public class MainGame extends ApplicationAdapter {
 
         _renderPipeline.append(debugRenderSystem);
 
-        constructPlayer(_engine, 0f, 0f, true);
+        constructPlayer(_engine, 0f, 0f);
     }
 
     @Override
@@ -95,6 +95,7 @@ public class MainGame extends ApplicationAdapter {
     public void resize (int width, int height) {
         _width = width;
         _height = height;
+        _renderPipeline.resize(width, height);
     }
 
     @Override

@@ -120,6 +120,7 @@ public class InputManager {
         }
     }
 
+    //TODO: Wtf is this doing here?????
     public static void setWorldCamera(OrthographicCamera camera) {
         _worldCamera = camera;
     }
