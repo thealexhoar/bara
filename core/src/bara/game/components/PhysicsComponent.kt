@@ -1,17 +1,12 @@
 package bara.game.components
 
 import bara.game.ashley.GameComponent
-import com.badlogic.ashley.core.Component
 import com.badlogic.gdx.physics.box2d.Body
 import com.badlogic.gdx.physics.box2d.BodyDef
 import com.badlogic.gdx.physics.box2d.Fixture
 import com.badlogic.gdx.physics.box2d.FixtureDef
-import com.badlogic.gdx.utils.Pool
-import bara.game.systems.WorldRenderSystem
 import com.badlogic.gdx.utils.ObjectMap
-import ktx.ashley.EngineEntity
-
-import java.util.HashMap
+import bara.game.ashley.EngineEntity
 
 class PhysicsComponent : GameComponent() {
     var bodyDef: BodyDef? = null

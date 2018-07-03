@@ -27,7 +27,7 @@ class CameraSystem(private val camera: OrthographicCamera) : EntitySystem() {
         if (entities.size() > 0) {
             val cameraEntity = entities.first()
             val cameraComponent = ComponentLookup.camera(cameraEntity)
-            val positionComponent = ComponentLookup.position(cameraEntity)
+            val positionComponent = ComponentLookup.position(cameraEntity)!!
 
             camera.position.set(
                 positionComponent.x,

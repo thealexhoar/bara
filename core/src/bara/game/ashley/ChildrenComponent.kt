@@ -1,7 +1,7 @@
 package bara.game.ashley
 
 import com.badlogic.ashley.core.Entity
-import ktx.ashley.EngineEntity
+import bara.game.ashley.EngineEntity
 import ktx.collections.GdxArray
 
 // WARNING: do NOT implement parent/child cycles

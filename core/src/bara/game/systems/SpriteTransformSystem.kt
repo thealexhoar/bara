@@ -13,14 +13,14 @@ class SpriteTransformSystem() : IteratingSystem(
 ) {
 
     override fun processEntity(entity: Entity, deltaTime: Float) {
-        val positionComponent = ComponentLookup.position(entity)
-        val spriteComponent = ComponentLookup.sprite(entity)
+        val positionComponent = ComponentLookup.position(entity)!!
+        val spriteComponent = ComponentLookup.sprite(entity)!!
 
         spriteComponent.sprite.setPosition(
             positionComponent.x + spriteComponent.offsetX,
             positionComponent.y + spriteComponent.offsetY
         )
         spriteComponent.sprite.rotation =
-            radiansToDegrees(positionComponent.theta +spriteComponent.angleRad)
+            radiansToDegrees(positionComponent.theta + spriteComponent.angleRad)
     }
 }

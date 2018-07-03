@@ -1,10 +1,11 @@
 package bara.game.graphics
 
+import com.badlogic.ashley.core.EntitySystem
 import com.badlogic.gdx.graphics.OrthographicCamera
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import ktx.collections.GdxArray
 
-class RenderPipeline(
+class RenderPipeline (
     private var screenWidth: Int,
     private var screenHeight: Int
 ) {
@@ -39,5 +40,17 @@ class RenderPipeline(
         for (i in 0 until stages.size) {
             stages.get(i).resize(width, height)
         }
+    }
+
+    fun dispose() {
+        stages.forEach { stage ->
+            stage.dispose()
+        }
+    }
+
+    fun getEntitySystems() : List<EntitySystem> {
+        return stages
+            .filter { stage -> stage is EntitySystem }
+            .map { stage -> stage as EntitySystem }
     }
 }

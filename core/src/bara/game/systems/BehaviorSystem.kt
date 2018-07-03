@@ -12,6 +12,6 @@ class BehaviorSystem :
 
     override fun processEntity(entity: Entity, deltaTime: Float) {
         val behaviorComponent = ComponentLookup.behavior(entity)
-        behaviorComponent.behavior?.run(deltaTime, entity)
+        behaviorComponent?.behavior?.run(deltaTime, entity)
     }
 }

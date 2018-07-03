@@ -10,12 +10,18 @@ import kotlin.reflect.KClass
 class PooledResourceEngine : PooledEngine() {
     private val resources = ObjectMap<KClass<*>, GdxArray<*>>()
 
-    inline fun <reified T> registerResource(value: T) {
-        registerResource(T::class, value as Any)
+    inline fun <reified T> addResource(value: T, index: Int = 0) {
+        addResource(T::class, value as Any)
     }
 
-    fun <T> registerResource(kclass: KClass<*>, value: T) {
-        resources.put(kclass, GdxArray<T>())
+    fun <T> addResource(kclass: KClass<*>, value: T, index: Int = 0) {
+        if (!resources.containsKey(kclass)) {
+            resources.put(kclass, GdxArray<T>())
+        }
+        if (resources[kclass].size <= index) {
+            resources[kclass].size = index + 1
+        }
+        (resources[kclass] as GdxArray<T>).set(index, value)
     }
 
     inline fun <reified T> getResource(index: Int = 0) : T? {

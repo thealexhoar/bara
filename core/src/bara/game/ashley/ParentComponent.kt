@@ -1,7 +1,7 @@
 package bara.game.ashley
 
 import com.badlogic.ashley.core.Entity
-import ktx.ashley.EngineEntity
+import bara.game.ashley.EngineEntity
 
 // WARNING: do NOT implement parent/child cycles
 // WARNING: ALWAYS add both PARENT and CHILD components to define relationship

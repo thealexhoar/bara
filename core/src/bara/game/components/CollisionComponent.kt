@@ -5,7 +5,7 @@ import com.badlogic.gdx.physics.box2d.Contact
 import com.badlogic.gdx.physics.box2d.Fixture
 import com.badlogic.gdx.utils.Array
 import com.badlogic.gdx.utils.ObjectMap
-import ktx.ashley.EngineEntity
+import bara.game.ashley.EngineEntity
 
 
 class CollisionComponent : GameComponent() {

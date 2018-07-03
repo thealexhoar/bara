@@ -1,10 +1,9 @@
 package bara.game.ashley
 
+import bara.game.ashley.EngineEntity
 import bara.game.util.ComponentLookup
 import com.badlogic.ashley.core.Entity
 import com.badlogic.ashley.core.PooledEngine
-import ktx.ashley.EngineEntity
-import ktx.ashley.entity
 import ktx.collections.GdxArray
 
 
@@ -33,7 +32,11 @@ fun Entity.createEntity(
 class ProtoEntity {
     val components = GdxArray<GameComponent>()
 
-    fun with(component: GameComponent) : ProtoEntity {
+    fun with(
+        component: GameComponent,
+        config: (GameComponent) -> Unit = {}
+    ) : ProtoEntity {
+        config(component)
         components.add(component)
         return this
     }
@@ -52,8 +55,8 @@ class ProtoEntity {
                         handleProtoChildrenComponent(this, gameComponent)
                 }
             }
+            configure(entity)
         }
-        configure(entity)
         return entity
     }
 }
@@ -66,8 +69,8 @@ fun handleChildrenComponent(
     val newComponent = ComponentLookup.children(engineEntity.entity)
     for (entity in component.children) {
         val newChild = entity.createEntity(engineEntity.engine as PooledEngine)
-        newComponent.children.add(newChild)
-        ComponentLookup.parent(newChild).parent = engineEntity.entity
+        newComponent!!.children.add(newChild)
+        ComponentLookup.parent(newChild)!!.parent = engineEntity.entity
     }
 }
 
@@ -80,7 +83,7 @@ fun handleProtoChildrenComponent(
     for (protoEntity in component.children) {
         val newChild =
             protoEntity.createEntity(engineEntity.engine as PooledEngine)
-        newComponent.children.add(newChild)
-        ComponentLookup.parent(newChild).parent = engineEntity.entity
+        newComponent!!.children.add(newChild)
+        ComponentLookup.parent(newChild)!!.parent = engineEntity.entity
     }
 }

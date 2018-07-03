@@ -22,55 +22,55 @@ object ComponentLookup {
     private val _sprite = ComponentMapper.getFor(SpriteComponent::class.java)
 
 
-    fun behavior(entity: Entity): BehaviorComponent {
+    fun behavior(entity: Entity): BehaviorComponent? {
         return _behavior.get(entity)
     }
 
-    fun camera(entity: Entity): CameraComponent {
+    fun camera(entity: Entity): CameraComponent? {
         return _camera.get(entity)
     }
 
-    fun children(entity: Entity): ChildrenComponent {
+    fun children(entity: Entity): ChildrenComponent? {
         return _children.get(entity)
     }
 
-    fun collision(entity: Entity): CollisionComponent {
+    fun collision(entity: Entity): CollisionComponent? {
         return _collision.get(entity)
     }
 
-    fun combat(entity: Entity): CombatComponent {
+    fun combat(entity: Entity): CombatComponent? {
         return _combat.get(entity)
     }
 
-    fun layer(entity: Entity): LayerComponent {
+    fun layer(entity: Entity): LayerComponent? {
         return _layer.get(entity)
     }
 
-    fun light(entity: Entity): LightComponent {
+    fun light(entity: Entity): LightComponent? {
         return _light.get(entity)
     }
 
-    fun parallax(entity: Entity): ParallaxComponent {
+    fun parallax(entity: Entity): ParallaxComponent? {
         return _parallax.get(entity)
     }
 
-    fun parent(entity: Entity): ParentComponent {
+    fun parent(entity: Entity): ParentComponent? {
         return _parent.get(entity)
     }
 
-    fun physics(entity: Entity): PhysicsComponent {
+    fun physics(entity: Entity): PhysicsComponent? {
         return _physics.get(entity)
     }
 
-    fun player(entity: Entity): PlayerComponent {
+    fun player(entity: Entity): PlayerComponent? {
         return _player.get(entity)
     }
 
-    fun position(entity: Entity): PositionComponent {
+    fun position(entity: Entity): PositionComponent? {
         return _position.get(entity)
     }
 
-    fun sprite(entity: Entity): SpriteComponent {
+    fun sprite(entity: Entity): SpriteComponent? {
         return _sprite.get(entity)
     }
 }

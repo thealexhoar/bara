@@ -2,7 +2,7 @@ package bara.game.components
 
 import bara.game.ashley.GameComponent
 import bara.game.behavior.Behavior
-import ktx.ashley.EngineEntity
+import bara.game.ashley.EngineEntity
 
 class BehaviorComponent : GameComponent() {
     var behavior: Behavior? = null

@@ -10,7 +10,7 @@ import bara.game.components.MouseComponent;
 import bara.game.components.PositionComponent;
 import bara.game.util.Blackboard;
 import bara.game.util.ComponentLookup;
-import bara.game.util.InputManager;
+import bara.game.input.InputManager;
 
 public class MouseSystem extends EntitySystem {
     private ImmutableArray<Entity> _entities;
@@ -21,32 +21,10 @@ public class MouseSystem extends EntitySystem {
 
     @Override
     public void addedToEngine(Engine engine) {
-        _entities = engine.getEntitiesFor(Family.all(PositionComponent.class, MouseComponent.class).get());
     }
 
     @Override
     public void update(float deltaTime) {
-        if(_entities.size() > 0) {
-            Entity mouseEntity = _entities.first();
-            PositionComponent positionComponent = ComponentLookup.INSTANCE.position(mouseEntity);
-            PositionComponent playerPosition = ComponentLookup.INSTANCE.position(Blackboard.player);
-
-            Vector2 delta = InputManager.getWorldMouseDelta();
-
-            Vector2 diff = new Vector2(
-                positionComponent.getX() - playerPosition.getX(),
-                positionComponent.getY() - playerPosition.getY()
-            );
-
-            diff.add(delta);
-            if(diff.len() > Blackboard.aimRadius) {
-                diff.setLength(Blackboard.aimRadius);
-            }
-
-            positionComponent.setX(playerPosition.getX() + diff.x);
-            positionComponent.setY(playerPosition.getY() + diff.y);
-
-            InputManager.setWorldMousePos(new Vector2(positionComponent.getX(), positionComponent.getY()));
-        }
+        //TODO: implement
     }
 }

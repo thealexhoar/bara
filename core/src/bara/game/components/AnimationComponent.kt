@@ -1,7 +1,7 @@
 package bara.game.components
 
 import bara.game.ashley.GameComponent
-import ktx.ashley.EngineEntity
+import bara.game.ashley.EngineEntity
 
 class AnimationComponent : GameComponent() {
     //TODO: implement data
@@ -14,3 +14,5 @@ class AnimationComponent : GameComponent() {
         engineEntity.with<AnimationComponent>()
     }
 }
+
+

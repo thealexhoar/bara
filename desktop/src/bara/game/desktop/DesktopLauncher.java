@@ -1,6 +1,6 @@
 package bara.game.desktop;
 
-import bara.game.MainGame;
+import bara.game.BaraMain;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
 
@@ -13,10 +13,10 @@ public class DesktopLauncher {
         config.backgroundFPS = 30;
         config.foregroundFPS = 60;
         config.vSyncEnabled = true;
-        config.useGL30 = true;
+        //config.useGL30 = true;
         //config.resizable = false;
-        config.samples = 8;
+        //config.samples = 8;
 
-        new LwjglApplication(new MainGame(800, 600), config);
+        new LwjglApplication(new BaraMain(800, 600), config);
     }
 }
