@@ -57,7 +57,9 @@ class AssetHandler(val logResults: Boolean = true) {
             assetManager.load<T>(fullLocation, jclass)
         }
         if (logResults) {
-            println("Attempting to load [$jclass] $name from $fullLocation")
+            val classSplitString = jclass.toString().split(".")
+            val classString = classSplitString[classSplitString.lastIndex]
+            println("Attempting to load [$classString] $name from $fullLocation")
         }
     }
 
@@ -95,7 +97,9 @@ class AssetHandler(val logResults: Boolean = true) {
                 }
                 fileMappings[assetDef.jclass]
                     .put(assetDef.name, assetDef.location)
-                println("Successfully loaded [${assetDef.jclass}] ${assetDef.name} from ${assetDef.location}")
+                val classSplitString = assetDef.jclass.toString().split(".")
+                val classString = classSplitString[classSplitString.lastIndex]
+                println("Successfully loaded [${classString}] ${assetDef.name} from ${assetDef.location}")
             }
         }
     }

@@ -71,7 +71,7 @@ class BaraMain(
 
         //physics
         engine.addResource(createWorld(
-            gravity = earthGravity,
+            gravity = earthGravity, // GRAVITY
             allowSleep = true
         ))
 
@@ -127,7 +127,7 @@ class BaraMain(
 
                 val fixtureDef = FixtureDef()
                 val shape = PolygonShape()
-                 shape.setAsBox(25f, 1f)
+                shape.setAsBox(25f, 1f)
                 fixtureDef.shape = shape
 
                 pc.bodyDef = bodyDef
